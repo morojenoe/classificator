@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS code_languages (
+  id_code_lang INTEGER PRIMARY KEY AUTOINCREMENT,
+  name VARCHAR NOT NULL,
+  UNIQUE (name)
+);

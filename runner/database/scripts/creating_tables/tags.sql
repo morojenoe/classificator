@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS tags (
+  id_tag INTEGER PRIMARY KEY AUTOINCREMENT,
+  eng_name VARCHAR NOT NULL ,
+  rus_name VARCHAR NOT NULL,
+  is_active BOOLEAN NOT NULL DEFAULT 1,
+  UNIQUE (eng_name),
+  UNIQUE (rus_name)
+);

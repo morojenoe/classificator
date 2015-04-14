@@ -1,0 +1,3 @@
+BEGIN TRANSACTION;
+INSERT INTO tags(eng_name, rus_name) VALUES ("", "");
+END TRANSACTION;
