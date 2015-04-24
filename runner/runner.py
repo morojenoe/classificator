@@ -1,3 +1,7 @@
+from path import Path
+import sys
+sys.path.append(Path().getcwd().parent)
+
 from database import get_learning_set
 from sklearn.cross_validation import train_test_split
 
@@ -28,6 +32,6 @@ if __name__ == "__main__":
     if testing is None:
         learning_problems, test_problems, learning_tags, test_tags = train_test_split(learning_problems,
                                                                                       learning_tags,
-                                                                                      0.3)
+                                                                                      test_size=0.3)
     else:
         test_problems, test_tags = load_set_from_file(testing)
