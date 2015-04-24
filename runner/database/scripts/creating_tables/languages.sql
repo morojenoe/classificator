@@ -1,5 +1,0 @@
-CREATE TABLE IF NOT EXISTS languages (
-  id_language INTEGER PRIMARY KEY AUTOINCREMENT,
-  name VARCHAR NOT NULL,
-  UNIQUE (name)
-);

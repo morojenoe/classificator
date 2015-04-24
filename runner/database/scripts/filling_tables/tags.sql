@@ -1,3 +1,13 @@
 BEGIN TRANSACTION;
-INSERT INTO tags(eng_name, rus_name) VALUES ("", "");
+INSERT INTO tags(eng_name, rus_name) VALUES ("data structures", "структуры данных");
+INSERT INTO tags(eng_name, rus_name) VALUES ("game theory", "теория игр");
+INSERT INTO tags(eng_name, rus_name) VALUES ("geometry", "геометрия");
+INSERT INTO tags(eng_name, rus_name) VALUES ("graph theory", "теория графов");
+INSERT INTO tags(eng_name, rus_name) VALUES ("string algorithms", "строковые алгоритмы");
+INSERT INTO tags(eng_name, rus_name) VALUES ("dynamic programming", "динамическое программирование");
+INSERT INTO tags(eng_name, rus_name) VALUES ("flows", "потоки");
+INSERT INTO tags(eng_name, rus_name) VALUES ("math", "математика");
+INSERT INTO tags(eng_name, rus_name) VALUES ("greedy", "жадные алгоритмы");
+INSERT INTO tags(eng_name, rus_name) VALUES ("shortest path", "кратчайшие пути");
+INSERT INTO tags(eng_name, rus_name) VALUES ("probabilities", "теория вероятностей");
 END TRANSACTION;
