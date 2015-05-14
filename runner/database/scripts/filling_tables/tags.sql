@@ -9,5 +9,4 @@ INSERT INTO tags(eng_name, rus_name) VALUES ("flows", "потоки");
 INSERT INTO tags(eng_name, rus_name) VALUES ("math", "математика");
 INSERT INTO tags(eng_name, rus_name) VALUES ("greedy", "жадные алгоритмы");
 INSERT INTO tags(eng_name, rus_name) VALUES ("shortest path", "кратчайшие пути");
-INSERT INTO tags(eng_name, rus_name) VALUES ("probabilities", "теория вероятностей");
 END TRANSACTION;
