@@ -2,7 +2,7 @@ from path import Path
 import sys
 sys.path.append(Path().getcwd().parent)
 
-from database import get_learning_set
+from db import get_learning_set
 from sklearn.cross_validation import train_test_split
 
 

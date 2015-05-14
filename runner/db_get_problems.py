@@ -18,7 +18,6 @@ def get_problems(conn):
     cursor = conn.cursor()
     cursor.execute('SELECT id_problem, link, text FROM problems')
     for problem in cursor:
-        print problem
         problem_id = problem[0]
         problems.append(Problem(problem[2], problem[1], get_solutions(conn, problem_id)))
         tags.append(get_tags(conn, problem_id))
