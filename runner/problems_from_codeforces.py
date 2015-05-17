@@ -61,10 +61,8 @@ def get_solution(contest_id, submission_id):
 
 
 def get_solutions(contest_id, index):
-    return []
-    # submission_ids = get_submission_ids(contest_id, index)
-    # submission_ids = submission_ids[:min(1, len(submission_ids))]
-    # return [Solution(get_solution(contest_id, submission_id), lang) for submission_id, lang in submission_ids]
+    submission_ids = get_submission_ids(contest_id, index)
+    return [Solution(get_solution(contest_id, submission_id), lang) for submission_id, lang in submission_ids]
 
 
 def cf_tags2my_tags(cf_tags):

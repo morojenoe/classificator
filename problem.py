@@ -8,7 +8,7 @@ class Solution:
 
 
 class Problem:
-    def __init__(self, statement, link, solution=None):
-        self.solutions = [] if solution is None else solution
+    def __init__(self, statement, link, solutions=None):
+        self.solutions = [] if solutions is None else solutions
         self.statement = statement
         self.link = link
