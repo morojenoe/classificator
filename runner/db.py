@@ -33,7 +33,7 @@ def fill_database(conn):
     conn.commit()
 
 
-def get_learning_set():
+def get_training_set():
     db_is_exist = Path(PATH_TO_PROBLEM_DATABASE).exists()
     with sqlite_connect(PATH_TO_PROBLEM_DATABASE) as conn:
         if not db_is_exist:
