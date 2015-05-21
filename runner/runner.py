@@ -40,9 +40,7 @@ def get_testing_set(path_to_testing, training_problems, training_tags):
     return training_problems, testing_problems, training_tags, testing_tags
 
 
-def main():
-    classificators, path_to_training, path_to_testing = parse_args()
-
+def main(classificators, path_to_training, path_to_testing):
     training_problems, training_tags = get_training_set(path_to_training)
     training_problems, testing_problems, training_tags, testing_tags = get_testing_set(path_to_testing,
                                                                                        training_problems, training_tags)
@@ -58,4 +56,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    classificators, path_to_training, path_to_testing = parse_args()
+    main(classificators, path_to_training, path_to_testing)

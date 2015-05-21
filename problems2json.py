@@ -12,7 +12,7 @@ class ProblemEncoder(json.JSONEncoder):
 
 
 def serialize_problems(problems, tags, fp):
-    to_serialize = [(problem, tag) for problem, tag in zip(problems, tags)]
+    to_serialize = list(zip(problems, tags))
     json.dump(to_serialize, fp, cls=ProblemEncoder, sort_keys=True)
 
 
