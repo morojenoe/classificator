@@ -1,6 +1,6 @@
 import sys
 from path import Path
-sys.path.append(Path().getcwd().parent)
+sys.path.append(Path().getcwd())
 
 from classificator import ACMClassificator
 from problems2json import serialize_problems_to_file
@@ -18,7 +18,7 @@ def parse_args():
     return args['training'], args['testing'], args['result']
 
 
-def main(classificator, path_to_training, path_to_testing, path_to_result):
+def run_classification(classificator, path_to_training, path_to_testing, path_to_result):
     training_problems, training_tags = deserialize_problems_from_file(path_to_training)
     testing_problems, testing_tags = deserialize_problems_from_file(path_to_testing)
 
@@ -28,6 +28,9 @@ def main(classificator, path_to_training, path_to_testing, path_to_result):
     serialize_problems_to_file(testing_problems, tags, path_to_result)
 
 
-if __name__ == "__main__":
+def main():
     path_to_training, path_to_testing, path_to_result = parse_args()
-    main(ACMClassificator(), path_to_training, path_to_testing, path_to_result)
+    run_classification(ACMClassificator(), path_to_training, path_to_testing, path_to_result)
+
+if __name__ == "__main__":
+    main()
