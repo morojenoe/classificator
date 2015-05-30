@@ -1,16 +1,15 @@
-import sys
-from path import Path
-sys.path.append(Path().getcwd().parent)
+# import sys
+# from path import Path
+# sys.path.append(Path().getcwd().parent)
 
-from db import get_training_set as get_training_set_from_db
+import logging
+from .db import get_training_set as get_training_set_from_db
+from .report import print_report
 from sklearn.cross_validation import train_test_split
 from problems2json import serialize_problems_to_file
 from json2problems import deserialize_problems_from_file
+from path import Path
 import subprocess
-
-
-def load_problems_from_file(path_to_file):
-    return deserialize_problems_from_file(path_to_file)
 
 
 def parse_args():
@@ -26,21 +25,21 @@ def parse_args():
 
 
 def get_free_files():
-    return 'training.dat', 'testing.dat', 'result.dat'
+    return Path('training.dat').abspath(), Path('testing.dat').abspath(), Path('result.dat').abspath()
 
 
 def get_training_set(path_to_training):
-    return get_training_set_from_db() if path_to_training is None else load_problems_from_file(path_to_training)
+    return get_training_set_from_db() if path_to_training is None else deserialize_problems_from_file(path_to_training)
 
 
 def get_testing_set(path_to_testing, training_problems, training_tags):
     if path_to_testing is None:
         return train_test_split(training_problems, training_tags, test_size=0.4)
-    testing_problems, testing_tags = load_problems_from_file(path_to_testing)
+    testing_problems, testing_tags = deserialize_problems_from_file(path_to_testing)
     return training_problems, testing_problems, training_tags, testing_tags
 
 
-def main(classificators, path_to_training, path_to_testing):
+def run_classification(classificators, path_to_training, path_to_testing):
     training_problems, training_tags = get_training_set(path_to_training)
     training_problems, testing_problems, training_tags, testing_tags = get_testing_set(path_to_testing,
                                                                                        training_problems, training_tags)
@@ -52,9 +51,18 @@ def main(classificators, path_to_training, path_to_testing):
     for classificator in classificators:
         cmd = classificator.split(' ')
         cmd.extend(['--training', path_to_training, '--testing', path_to_testing, '--result', path_to_result])
-        subprocess.Popen(cmd)
+        child = subprocess.Popen(cmd)
+        return_code = child.wait()
+        if return_code != 0:
+            logging.error('The command "{0}" returned a non-zero code'.format(' '.join(cmd)))
+        else:
+            predicted_problems, predicted_tags = deserialize_problems_from_file(path_to_result)
+            print_report(testing_problems, testing_tags, predicted_problems, predicted_tags)
 
+    path_to_result.remove_p()
+    path_to_training.remove()
+    path_to_testing.remove()
 
-if __name__ == "__main__":
+def main():
     classificators, path_to_training, path_to_testing = parse_args()
-    main(classificators, path_to_training, path_to_testing)
+    run_classification(classificators, path_to_training, path_to_testing)
