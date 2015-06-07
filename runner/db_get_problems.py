@@ -9,11 +9,11 @@ def _get_solutions(conn, problem_id):
 
 def _get_tags(conn, problem_id):
     cursor = conn.cursor()
-    cursor.execute('SELECT tags.eng_name '
-                   'FROM problem_tag '
-                   'INNER JOIN tags '
-                   'ON tags.id_tag = problem_tag.id_tag '
-                   'WHERE problem_tag.id_problem=?', (problem_id, ))
+    cursor.execute('SELECT t.eng_name '
+                   'FROM problem_tag pt '
+                   'INNER JOIN tags t '
+                   'ON t.id_tag = pt.id_tag AND t.is_active '
+                   'WHERE pt.id_problem=?', (problem_id, ))
     return [tag[0] for tag in cursor]
 
 
@@ -22,7 +22,11 @@ def get_problems(conn):
     cursor = conn.cursor()
     cursor.execute('SELECT id_problem, link, text '
                    'FROM problems p '
-                   'WHERE EXISTS(SELECT * FROM problem_tag pt WHERE pt.id_problem = p.id_problem) ')
+                   'WHERE EXISTS(SELECT * '
+                   '             FROM problem_tag pt '
+                   '             INNER JOIN tags t '
+                   '             ON pt.id_tag = t.id_tag AND t.is_active '
+                   '             WHERE pt.id_problem = p.id_problem)')
     for problem in cursor:
         problem_id = problem[0]
         problems.append(Problem(problem[2], problem[1], _get_solutions(conn, problem_id)))
