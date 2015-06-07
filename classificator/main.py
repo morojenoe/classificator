@@ -2,7 +2,7 @@ import sys
 from path import Path
 sys.path.append(Path().getcwd())
 
-from classificator import ACMClassificator
+from random_forest import ACMClassificator
 from problems2json import serialize_problems_to_file
 from json2problems import deserialize_problems_from_file
 
@@ -28,9 +28,9 @@ def run_classification(classificator, path_to_training, path_to_testing, path_to
     serialize_problems_to_file(testing_problems, tags, path_to_result)
 
 
-def main():
+def main(classificator):
     path_to_training, path_to_testing, path_to_result = parse_args()
-    run_classification(ACMClassificator(), path_to_training, path_to_testing, path_to_result)
+    run_classification(classificator, path_to_training, path_to_testing, path_to_result)
 
 if __name__ == "__main__":
-    main()
+    main(ACMClassificator())
