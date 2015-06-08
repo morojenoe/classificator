@@ -3,7 +3,6 @@ from sklearn.ensemble import GradientBoostingClassifier
 from base_classificator import BaseACMClassificator
 from nltk.stem.snowball import EnglishStemmer
 import nltk
-from sklearn.preprocessing import MultiLabelBinarizer
 
 
 def stem_tokens(tokens, stemmer):
