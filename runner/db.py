@@ -1,6 +1,7 @@
 from path import Path
 from sqlite3 import connect as sqlite_connect
-from .problems_from_codeforces import get_problems as codeforces_problems
+from .problems_from_codeforces import CodeforcesDownloader
+from .problems_from_timus import TimusDownloader
 from .db_insert_problem import insert_problem
 from .db_get_problems import get_problems
 
@@ -27,9 +28,11 @@ def _create_database(conn):
 
 def _fill_database(conn):
     cursor = conn.cursor()
-    problems, tags = codeforces_problems()
-    for problem, tag in zip(problems, tags):
-        insert_problem(cursor, problem, tag)
+    problem_downloaders = [TimusDownloader(), CodeforcesDownloader()]
+    for downloader in problem_downloaders:
+        problems, tags = downloader.get_problems_and_tags()
+        for problem, tag in zip(problems, tags):
+            insert_problem(cursor, problem, tag)
     conn.commit()
 
 

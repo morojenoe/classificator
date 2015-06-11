@@ -1,10 +1,12 @@
 # What for
+
 This project helps you to classify competitive programming problems
 (for example from topcoder.com algorithm or codeforces.com) 
 onto several tags(string algorithms, data structures, graphs and etc.).
 
 
 # Dependencies
+
 This project is tested to work under Python 3.4. It does't work under Python 2.
 
 - scikit-learn >= 0.16.1 (http://scikit-learn.org/)

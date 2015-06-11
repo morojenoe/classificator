@@ -6,11 +6,10 @@ from problems2json import serialize_problems_to_file
 from json2problems import deserialize_problems_from_file
 from path import Path
 import subprocess
+import argparse
 
 
 def parse_args():
-    import argparse
-
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', action='append', required=True,
                         help='is the command you would use to execute your classificator')
@@ -56,8 +55,9 @@ def run_classification(classificators, path_to_training, path_to_testing):
             print_report(classificator, testing_problems, testing_tags, predicted_problems, predicted_tags)
 
     path_to_result.remove_p()
-    path_to_training.remove()
-    path_to_testing.remove()
+    path_to_training.remove_p()
+    path_to_testing.remove_p()
+
 
 def main():
     classificators, path_to_training, path_to_testing = parse_args()
