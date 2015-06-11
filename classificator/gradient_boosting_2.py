@@ -1,8 +1,8 @@
 from sklearn.ensemble import GradientBoostingClassifier
 import nltk
 
-from base_classificator import BaseACMClassificator
-from vectorizer import MyVectorizer
+from .base_classificator import BaseACMClassificator
+from .vectorizer import MyVectorizer
 
 
 class ACMClassificator(BaseACMClassificator):

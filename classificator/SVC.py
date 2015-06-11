@@ -1,7 +1,7 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.svm import SVC
 from nltk.stem.snowball import EnglishStemmer
-from base_classificator import BaseACMClassificator
+from .base_classificator import BaseACMClassificator
 import nltk
 
 

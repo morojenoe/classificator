@@ -1,6 +1,6 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.ensemble import GradientBoostingClassifier
-from base_classificator import BaseACMClassificator
+from .base_classificator import BaseACMClassificator
 from nltk.stem.snowball import EnglishStemmer
 import nltk
 

@@ -2,7 +2,6 @@ import nltk
 from nltk.stem.snowball import EnglishStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectKBest, chi2
-from sklearn.pipeline import Pipeline
 
 
 def stem_tokens(tokens, stemmer):
