@@ -1,4 +1,4 @@
-from .random_forest import ACMClassificator
+from .gradient_boosting import ACMClassificator
 from problems2json import serialize_problems_to_file
 from json2problems import deserialize_problems_from_file
 
@@ -29,7 +29,7 @@ def main(classificator):
     run_classification(classificator, path_to_training, path_to_testing, path_to_result)
 
 
-def main2():
+def main_with_classificator():
     main(ACMClassificator())
 
 if __name__ == "__main__":

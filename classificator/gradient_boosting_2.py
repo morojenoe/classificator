@@ -8,7 +8,7 @@ from .vectorizer import MyVectorizer
 class ACMClassificator(BaseACMClassificator):
     def __init__(self):
         self.vectorizer = MyVectorizer()
-        self.classificator = GradientBoostingClassifier(n_estimators=5, learning_rate=0.01, max_features="auto")
+        self.classificator = GradientBoostingClassifier(n_estimators=800, learning_rate=0.01, max_features="auto")
 
     def _prepare_problems(self, problems):
         return self.vectorizer.transform([p.statement for p in problems])
