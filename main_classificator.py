@@ -1,4 +1,4 @@
-from classificator.main import main2
+from classificator.main import main_with_classificator
 
 if __name__ == '__main__':
-    main2()
+    main_with_classificator()
