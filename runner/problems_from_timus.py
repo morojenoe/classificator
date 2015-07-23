@@ -30,7 +30,6 @@ class TimusDownloader(ProblemDownloaderBase):
         link2id = {}
 
         for index, tag in enumerate(tags_on_timus):
-            print(tag)
             problem_ids = self._get_problem_ids(tag)
             for p_id in problem_ids:
                 link = self._get_link(p_id)

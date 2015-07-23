@@ -74,7 +74,7 @@ class CodeforcesDownloader(ProblemDownloaderBase):
             "number theory": "math",
             "divide and conquer": None,
             "binary search": None,
-            "fft": None,
+            "fft": "math",
             "games": "game theory",
             "dsu": None,
             "chinese remainder theorem": "math",
@@ -105,8 +105,7 @@ class CodeforcesDownloader(ProblemDownloaderBase):
         api = codeforces.CodeforcesAPI()
         cf_problems = api.problemset_problems()["problems"]
 
-        problems = []
-        tags = []
+        problems, tags = [], []
         for problem in cf_problems:
             link = self._make_link_to_problem_statement(problem.contest_id, problem.index)
             statement = self._get_statement(link)
