@@ -20,6 +20,7 @@ def deserialize_problems(fp):
             tags.append(tmp_tags)
 
     except (TypeError, KeyError) as e:
+        logging.warning('Cannot deserialize problems')
         logging.exception(e)
 
     return problems, tags

@@ -1,3 +1,4 @@
+import logging
 import json
 from problem import Problem, Solution
 
@@ -13,7 +14,12 @@ class ProblemEncoder(json.JSONEncoder):
 
 def serialize_problems(problems, tags, fp):
     to_serialize = list(zip(problems, tags))
-    json.dump(to_serialize, fp, cls=ProblemEncoder, sort_keys=True)
+
+    try:
+        json.dump(to_serialize, fp, cls=ProblemEncoder, sort_keys=True)
+    except (TypeError, ValueError, OverflowError) as e:
+        logging.warning('Cannot serialize problems')
+        logging.exception(e)
 
 
 def serialize_problems_to_file(problems, tags, path_to_file):
